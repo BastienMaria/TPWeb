@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,7 +59,15 @@ public class ServletUsers extends HttpServlet {
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                     Gson gson = new Gson();
                     String json = gson.toJson(liste);
-                    System.out.println(json);
+
+                    String myJson = "{\n"
+                            + "    \"aaData\": [\n"
+                            + "        [";
+
+                    for (Iterator<Utilisateur> it = liste.iterator(); it.hasNext();) {
+                        Utilisateur utilisateur = it.next();
+                        //  myJson += utilisateur.
+                    }
 
                     response.setContentType("application/json");
                     PrintWriter out = response.getWriter();

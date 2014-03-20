@@ -15,21 +15,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestionnaire d'utilisateurs</title>
-        <style type="text/css" title="currentStyle">
-            @import "DataTables-1.9.4/media/css/jquery.dataTables.css";
-            @import "DataTables-1.9.4/media/css/demo_table.css";
-        </style>
-        <script type="text/javascript" language="javascript" src="DataTables-1.9.4/media/js/jquery.js"></script>
-        <script type="text/javascript" language="javascript" src="DataTables-1.9.4//media/js/jquery.dataTables.js"></script>
-
-        <script>
-            $(document).ready(function() {
-                $('#example').dataTable({
-                    "bProcessing": true,
-                    "sAjaxSource": 'test.json'
-                });
-            });
-        </script>
     </head>
     <body>
         <h1>Gestionnaire d'utilisateurs</h1>
@@ -108,7 +93,5 @@
                 <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td><a href="ServletUsers?action=listerLesUtilisateurs&page=<%= Integer.parseInt(request.getParameter("page")) + 1%><% System.out.println(request.getParameter("page"));%>">&gt;&gt;</a></td></tr>
             </table>
         </c:if>
-
-        <div id="example"></div>
     </body>
 </html>
