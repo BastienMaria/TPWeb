@@ -29,6 +29,7 @@ public class GestionnaireUtilisateurs {
     }
 
     public Collection<Utilisateur> chercherParLogin(String login, int startPosition) {
+        
         Query q = em.createQuery("select u from Utilisateur u where lower(u.login) = :login");
         q.setParameter("login", login.toLowerCase());
         q.setMaxResults(10);
@@ -37,28 +38,28 @@ public class GestionnaireUtilisateurs {
         return q.getResultList();
     }
 
-    public int updateUsers(String login, String newFirstname, String newLastname) {
-        int updatesCount;
-
-        Query q = em.createQuery("update Utilisateur u set  u.firstname = :firstname , u.lastname = :lastname where lower(u.login) = :login");
-        q.setParameter("firstname", newFirstname);
-        q.setParameter("lastname", newLastname);
-        q.setParameter("login", login);
-        updatesCount = q.executeUpdate();
-
-        return updatesCount;
+    public boolean updateUsers(Utilisateur user) {
+        
+        try{
+            em.merge(user);
+        } catch(Exception e){
+            return false;
+        }
+        
+        return true;
     }
 
-    public int deleteUsers(Collection<Utilisateur> users) {
-        int deletedCount = 0;
+    public boolean deleteUsers(int id) {
 
-        for (final Utilisateur user : users) {
-            Query q = em.createQuery("delete from Utilisateur u where u = :user");
-            q.setParameter("user", user);
-            deletedCount += q.executeUpdate();
+        Utilisateur u = em.find(Utilisateur.class, id);
+        
+        try{
+            em.remove(u);
+        } catch (Exception e){
+            return false;
         }
-
-        return deletedCount;
+        
+        return true;
     }
 
     public Collection<Utilisateur> getAllUsers() {
