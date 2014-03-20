@@ -101,7 +101,7 @@ public class ServletUsers extends HttpServlet {
                     request.setAttribute("listeDesUsers", liste);
                     forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
                     int countUsersFound = liste.size();
-                    message = countUsersFound + " utilisateur(s) trouvé(s), affichage des utilisateurs 1 à 10";
+                    message = countUsersFound + " utilisateur(s) trouvé(s)";
                     break;
                 }
                 case "updateUtilisateur": {
