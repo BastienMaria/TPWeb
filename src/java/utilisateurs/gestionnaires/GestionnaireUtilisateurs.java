@@ -20,6 +20,10 @@ public class GestionnaireUtilisateurs {
         creeUtilisateur("Paul", "Mac Cartney", "pmc");
         creeUtilisateur("Ringo", "Starr", "rstarr");
         creeUtilisateur("Georges", "Harisson", "georgesH");
+        for (int i = 0; i < 15; i++) {
+            creeUtilisateur("testPrenom" + i, "testNom" + i, "testLogin" + i);
+
+        }
     }
 
     public Utilisateur creeUtilisateur(String nom, String prenom, String login) {
@@ -29,7 +33,7 @@ public class GestionnaireUtilisateurs {
     }
 
     public Collection<Utilisateur> chercherParLogin(String login, int startPosition) {
-        
+
         Query q = em.createQuery("select u from Utilisateur u where lower(u.login) = :login");
         q.setParameter("login", login.toLowerCase());
         q.setMaxResults(10);
@@ -39,32 +43,42 @@ public class GestionnaireUtilisateurs {
     }
 
     public boolean updateUsers(Utilisateur user) {
-        
-        try{
+
+        try {
             em.merge(user);
-        } catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
-        
+
         return true;
     }
 
     public boolean deleteUsers(int id) {
 
         Utilisateur u = em.find(Utilisateur.class, id);
-        
-        try{
+
+        try {
             em.remove(u);
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
-        
+
         return true;
     }
 
     public Collection<Utilisateur> getAllUsers() {
         // Exécution d'une requête équivalente à un select *  
         Query q = em.createQuery("select u from Utilisateur u");
+        //q.setFirstResult(startPosition - 1);
+        return q.getResultList();
+    }
+
+    //TODO
+    public Collection<Utilisateur> getAllUsersPaginated() {
+        // Exécution d'une requête équivalente à un select *  
+        Query q = em.createQuery("select u from Utilisateur u");
+        q.setMaxResults(10);
+        //q.setFirstResult(startPosition - 1);
         return q.getResultList();
     }
     // Add business logic below. (Right-click in editor and choose  

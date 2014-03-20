@@ -4,7 +4,6 @@
  */
 package servlets;
 
-import com.google.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -57,21 +56,26 @@ public class ServletUsers extends HttpServlet {
                 }
                 case "datatables": {
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                    Gson gson = new Gson();
-                    String json = gson.toJson(liste);
+
+                    String virgule = ",";
 
                     String myJson = "{\n"
-                            + "    \"aaData\": [\n"
-                            + "        [";
+                            + "    \"aaData\": [";
 
                     for (Iterator<Utilisateur> it = liste.iterator(); it.hasNext();) {
                         Utilisateur utilisateur = it.next();
-                        //  myJson += utilisateur.
+                        myJson += "[" + " \"" + utilisateur.getLogin() + "\",";
+                        myJson += "\"" + utilisateur.getFirstname() + "\",";
+                        myJson += "\"" + utilisateur.getLastname() + "\"]";
+                        if (it.hasNext()) {
+                            myJson += virgule;
+                        }
                     }
-
+                    myJson += "]\n"
+                            + "}";
                     response.setContentType("application/json");
                     PrintWriter out = response.getWriter();
-                    out.print(json);
+                    out.print(myJson);
                     out.flush();
                     break;
                 }
@@ -101,11 +105,11 @@ public class ServletUsers extends HttpServlet {
                     break;
                 }
                 case "updateUtilisateur": {
-                    int updatedCount = gestionnaireUtilisateurs.updateUsers(request.getParameter("login"), request.getParameter("prenom"), request.getParameter("nom"));
+                    // int updatedCount = gestionnaireUtilisateurs.updateUsers(request.getParameter("login"), request.getParameter("prenom"), request.getParameter("nom"));
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                     request.setAttribute("listeDesUsers", liste);
                     forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
-                    message = updatedCount + " utilisateur(s) modifié(s)";
+                    //  message = updatedCount + " utilisateur(s) modifié(s)";
                     break;
                 }
                 default:
