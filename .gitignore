@@ -2,3 +2,4 @@
 /build/
 /setup/glassfish-resources.xml
 /src/conf/persistence.xml
+/dist/
