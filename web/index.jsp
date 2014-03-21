@@ -17,6 +17,9 @@
         <title>Gestionnaire d'utilisateurs</title>
     </head>
     <body>
+        
+        <jsp:include page="includes/login.jsp"></jsp:include>
+        
         <h1>Gestionnaire d'utilisateurs</h1>
         <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->
         <c:if test="${!empty param['message']}">
