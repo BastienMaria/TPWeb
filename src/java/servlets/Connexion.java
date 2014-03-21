@@ -67,6 +67,8 @@ public class Connexion extends HttpServlet {
         if (request.getParameter("login").equals(login) && request.getParameter("password").equals(pwd)) {
             HttpSession session = request.getSession();
             session.setAttribute("login", login);
+            //2 semaines (14 jours)
+            session.setMaxInactiveInterval(1209600);
         }
         
         request.getRequestDispatcher("index.jsp").forward(request, response);
