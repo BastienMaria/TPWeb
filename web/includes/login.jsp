@@ -26,7 +26,7 @@
     </fieldset>
 
     <% } else {%>
-    <h3><a href="Deconnecte">Déconnexion</a><br></h3>
+    <h3><a href="Deconnexion">Déconnexion</a><br></h3>
     <h3> Bonjour <%= session.getAttribute("login")%></h3>
 
     <%}%>
