@@ -55,7 +55,7 @@
 
 
 
-            <jsp:include page="includes/login.jsp"></jsp:include>
+            <c:import url="/WEB-INF/login.jsp"></c:import>
             <c:if test="${sessionScope.login != null}">
 
                 <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->
@@ -63,7 +63,7 @@
                     <h5>Reçu message : ${param.message}</h5>
                 </c:if>
 
-                <jsp:include page="WEB-INF/menu.jsp"></jsp:include>
+                <c:import url="WEB-INF/menu.jsp"></c:import>>
 
                     <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->
                 <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >
