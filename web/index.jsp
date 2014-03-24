@@ -63,37 +63,11 @@
                     <h5>Reçu message : ${param.message}</h5>
                 </c:if>
 
-                <c:import url="WEB-INF/menu.jsp"></c:import>>
+                <c:import url="/WEB-INF/menu.jsp"></c:import>
 
-                    <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->
-                <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >
-                    <h2>Liste des utilisateurs</h2>
-
-                    <table border="10">
-                        <!-- La ligne de titre du tableau des comptes -->
-                        <tr>
-                            <td><b>Login</b></td>
-                            <td><b>Nom</b></td>
-                            <td><b>Prénom</b></td>
-                        </tr>
-
-                        <!-- Ici on affiche les lignes, une par utilisateur -->
-                        <!-- cette variable montre comment on peut utiliser JSTL et EL pour calculer -->
-                        <c:set var="total" value="0"/>
-
-                        <c:forEach var="u" items="${requestScope['listeDesUsers']}">
-                            <tr>
-                                <td>${u.login}</td>
-                                <td>${u.firstname}</td>
-                                <td>${u.lastname}</td>
-                                <!-- On compte le nombre de users -->
-                                <c:set var="total" value="${total+1}"/>
-                            </tr>
-                        </c:forEach>
-
-                        <!-- Affichage du solde total dans la dernière ligne du tableau -->
-                        <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td><a href="ServletUsers?action=listerLesUtilisateurs&page=<%= Integer.parseInt(request.getParameter("page")) + 1%><% System.out.println(request.getParameter("page"));%>">&gt;&gt;</a></td></tr>
-                    </table>
+                    <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerlesUtilisateurs -->
+                <c:if test="${param['action'] == 'listerLesUtilisateurs'}">
+                    <c:import url="/WEB-INF/tab.jsp"></c:import>
                 </c:if>
             </c:if>
         </div>
