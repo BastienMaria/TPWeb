@@ -65,6 +65,8 @@
 
                 <jsp:include page="WEB-INF/menu.jsp"></jsp:include>
 
+                <c:import url="/testDT.html"></c:import>
+
                     <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->
                 <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >
                     <h2>Liste des utilisateurs</h2>

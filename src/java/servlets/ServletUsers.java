@@ -57,6 +57,7 @@ public class ServletUsers extends HttpServlet {
                 case "datatables": {
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
 
+                    //parser json à réintégrer ds le gestionnaire
                     String virgule = ",";
 
                     String myJson = "{\n"
