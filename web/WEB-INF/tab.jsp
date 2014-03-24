@@ -3,7 +3,11 @@
 
 <h2>Liste des utilisateurs</h2>
 
-<table border="10" onload="init();">
+<table border="10">
+    <script>
+        window.onload = init();
+        console.log(previous);
+    </script>
     <!-- La ligne de titre du tableau des comptes -->
     <tr>
         <td><b>Login</b></td>
