@@ -18,29 +18,68 @@
         <li><a href="#tabs-1">Créer un utilisateur</a></li>
         <li><a href="#tabs-2">Afficher les détails d'un utilisateur</a></li>
         <li><a href="#tabs-3">Modifier les détails d'un utilisateur</a></li>
+        <li><a href="#tabs-4">Générer des données</a></li>
     </ul>
     <div id="tabs-1">
-        <form action="ServletUsers" method="get">
-            Nom : <input type="text" name="nom"/><br>
-            Prénom : <input type="text" name="prenom"/><br>
-            Login : <input type="text" name="login"/><br>
-            <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->
-            <input type="hidden" name="action" value="creerUnUtilisateur"/>
-            <input type="submit" value="Créer l'utilisateur" name="submit"/>
-        </form>    </div>
+        <form role="form" action="ServletUsers" method="get">
+            <div class="form-group">
+                <label for="nom">Nom :</label>
+                <input class="form-control" type="text" name="nom"/><br>
+
+                <label for="pre">Prénom :</label>
+                <input class="form-control" type="text" name="prenom"/><br>
+
+                <label for="log">Login :</label>
+                <input class="form-control" type="text" name="login"/><br>
+
+                <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->
+                <input type="hidden" name="action" value="creerUnUtilisateur"/>
+                <input class="btn btn-default" type="submit" value="Créer l'utilisateur" name="submit"/>
+            </div>
+        </form>  
+    </div>
     <div id="tabs-2">
-        <form action="ServletUsers" method="get">
-            login : <input type="text" name="login"/><br>
-            <input type="hidden" name="action" value="chercherParLogin"/>
-            <input type="submit" value="Chercher" name="submit"/>
-        </form>    </div>
+        <form role="form" action="ServletUsers" method="get">
+            <div class="form-group">
+
+                login : <input type="text" name="login"/><br>
+                <input type="hidden" name="action" value="chercherParLogin"/>
+                <input type="submit" value="Chercher" name="submit"/>
+            </div>
+        </form>   
+    </div>
     <div id="tabs-3">
-        <form action="ServletUsers" method="get">
-            Login : <input type="text" name="login"/><br>
-            Nom : <input type="text" name="nom"/><br>
-            Prénom : <input type="text" name="prenom"/><br>
-            <input type="hidden" name="action" value="updateUtilisateur"/>
-            <input type="submit" value="Mettre à jour" name="submit"/>
+        <form role="form" action="ServletUsers" method="get">
+            <div class="form-group">
+
+                Login : <input type="text" name="login"/><br>
+                Nom : <input type="text" name="nom"/><br>
+                Prénom : <input type="text" name="prenom"/><br>
+                <input type="hidden" name="action" value="updateUtilisateur"/>
+                <input type="submit" value="Mettre à jour" name="submit"/>
+            </div>
+        </form>
+    </div>
+    <div id="tabs-4">
+        <form role="form"  action="ServletUsers" method="get">
+            <div class="form-group">
+                <label>Nombre d'utilisateurs à générer :</label>
+                <select name="nbUsers" class="form-control">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
+                    <option>60</option>
+                    <option>70</option>
+                    <option>80</option>
+                    <option>90</option>
+                    <option>100</option>
+                </select>
+                <input type="hidden" name="action" value="generateData"/>
+            </div>
+            <button type="submit" class="btn btn-default">OK</button>
+
         </form>
     </div>
 </div> 

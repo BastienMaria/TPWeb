@@ -16,6 +16,11 @@
     
     <dependencies>
         <dependency>
+            <groupId>com.googlecode.jcsv</groupId>
+            <artifactId>jcsv</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>

@@ -1,11 +1,20 @@
-package utilisateurs.gestionnaires;
+package com.utilisateurs.gestionnaires;
 
+import com.googlecode.jcsv.reader.CSVReader;
+import com.googlecode.jcsv.reader.internal.CSVReaderBuilder;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import utilisateurs.modeles.Utilisateur;
+import utils.csv.UtilisateurEntryParser;
 
 @Stateless
 public class GestionnaireUtilisateurs {
@@ -83,4 +92,20 @@ public class GestionnaireUtilisateurs {
     }
     // Add business logic below. (Right-click in editor and choose  
     // "Insert Code > Add Business Method")  
+
+    public Collection<Utilisateur> generateData() throws FileNotFoundException, IOException {
+        Reader reader = new FileReader("C:\\Users\\Bastien\\Documents\\NetBeansProjects\\TPWeb\\web\\data.csv");
+
+        CSVReader<Utilisateur> csvPersonReader = new CSVReaderBuilder<Utilisateur>(reader).entryParser(new UtilisateurEntryParser()).build();
+        List<Utilisateur> persons = csvPersonReader.readAll();
+
+        for (Iterator<Utilisateur> it = persons.iterator(); it.hasNext();) {
+            Utilisateur u = it.next();
+            System.out.println(u.getFirstname() + "  " + u.getLastname() + "  " + u.getLogin());
+
+        }
+
+        return persons;
+    }
+
 }

@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates 
  * and open the template in the editor. 
  */
-package servlets;
+package com.servlets;
 
+import com.utilisateurs.gestionnaires.GestionnaireUtilisateurs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utilisateurs.gestionnaires.GestionnaireUtilisateurs;
 import utilisateurs.modeles.Utilisateur;
 
 /**
@@ -112,6 +112,23 @@ public class ServletUsers extends HttpServlet {
                     //  message = updatedCount + " utilisateur(s) modifié(s)";
                     break;
                 }
+                case "generateData": {
+
+                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.generateData();
+
+                    String[] comboxBox = request.getParameterValues("nbUsers");
+                    int nb = 100;//default
+                    nb = Integer.parseInt(comboxBox[0]);
+
+                    for (Utilisateur utilisateur : liste) {
+                        gestionnaireUtilisateurs.creeUtilisateur(utilisateur.getLastname(), utilisateur.getFirstname(), utilisateur.getLogin());
+                    }
+
+                    request.setAttribute("listeDesUsers", liste);
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
+                    break;
+                }
+
                 default:
                     forwardTo = "index.jsp?action=todo";
                     message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";
