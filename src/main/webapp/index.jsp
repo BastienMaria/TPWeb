@@ -26,17 +26,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/TPWeb/">Gestionnaire d'utilisateurs</a>
+                        <a class="navbar-brand" href="/TPWeb(Maven)/">Gestionnaire d'utilisateurs</a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="/TPWeb/">Home</a></li>
-                            <li><a href="/TPWeb/testDT.html">All users</a></li>
-                            <li><a href="#about">About</a></li>
+                            <li class="active"><a href="/TPWeb(Maven)/">Home</a></li>
                         </ul>
-                        <ul class="nav navbar-right">
-                            <li><a href="#">Deconnexion</a></li>
-                        </ul>
+
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
@@ -44,20 +40,20 @@
             <div class="container theme-showcase" role="main">
 
 
-
             <jsp:include page="/WEB-INF/login.jsp"></jsp:include>
             <c:if test="${sessionScope.login != null}">
 
                 <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->
                 <c:if test="${!empty param['message']}">
-                    <div class="alert alert-success"> <h5>Reçu message : ${param.message}</h5></div>
+                    <div class="alert alert-warning alert-dismissable">
+                        <strong>Reçu message : </strong> ${param.message}
+                    </div>
                 </c:if>
 
                 <jsp:include page="WEB-INF/menu.jsp"></jsp:include>
 
-                <%--<c:import url="/testDT.html"></c:import>--%>
 
-                <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->
+                    <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->
                 <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >
                     <h2>Liste des utilisateurs</h2>
 

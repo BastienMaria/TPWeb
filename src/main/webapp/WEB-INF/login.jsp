@@ -29,8 +29,11 @@
         </fieldset>
 
         <% } else {%>
-        <h3><a href="Deconnexion">Déconnexion</a><br></h3>
-        <h3> Bonjour <%= session.getAttribute("login")%></h3>
+        <div class="page-header">
+            <h1>Bonjour <%= session.getAttribute("login")%> !</h1>
+            <small><a href="Deconnexion" class="btn btn-info btn-xs">Déconnexion</a></small>
+        </div>
+        <h3> </h3>
 
         <%}%>
     </div>

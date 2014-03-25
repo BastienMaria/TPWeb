@@ -1,4 +1,4 @@
-package com.utilisateurs.gestionnaires;
+package utilisateurs.gestionnaires;
 
 import com.googlecode.jcsv.reader.CSVReader;
 import com.googlecode.jcsv.reader.internal.CSVReaderBuilder;
@@ -24,17 +24,16 @@ public class GestionnaireUtilisateurs {
     @PersistenceContext
     private EntityManager em;
 
-    public void creerUtilisateursDeTest() {
-        creeUtilisateur("John", "Lennon", "jlennon");
-        creeUtilisateur("Paul", "Mac Cartney", "pmc");
-        creeUtilisateur("Ringo", "Starr", "rstarr");
-        creeUtilisateur("Georges", "Harisson", "georgesH");
-        for (int i = 0; i < 15; i++) {
-            creeUtilisateur("testPrenom" + i, "testNom" + i, "testLogin" + i);
-
-        }
-    }
-
+//    public void creerUtilisateursDeTest() {
+//        creeUtilisateur("John", "Lennon", "jlennon");
+//        creeUtilisateur("Paul", "Mac Cartney", "pmc");
+//        creeUtilisateur("Ringo", "Starr", "rstarr");
+//        creeUtilisateur("Georges", "Harisson", "georgesH");
+//        for (int i = 0; i < 15; i++) {
+//            creeUtilisateur("testPrenom" + i, "testNom" + i, "testLogin" + i);
+//
+//        }
+//    }
     public Utilisateur creeUtilisateur(String nom, String prenom, String login) {
         Utilisateur u = new Utilisateur(nom, prenom, login);
         em.persist(u);

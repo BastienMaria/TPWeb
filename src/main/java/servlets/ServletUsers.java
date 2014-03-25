@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates 
  * and open the template in the editor. 
  */
-package com.servlets;
+package servlets;
 
-import com.utilisateurs.gestionnaires.GestionnaireUtilisateurs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utilisateurs.gestionnaires.GestionnaireUtilisateurs;
 import utilisateurs.modeles.Utilisateur;
 
 /**
@@ -57,6 +57,7 @@ public class ServletUsers extends HttpServlet {
                 case "datatables": {
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
 
+                    //parser json à réintégrer ds le gestionnaire
                     String virgule = ",";
 
                     String myJson = "{\n"
@@ -79,14 +80,14 @@ public class ServletUsers extends HttpServlet {
                     out.flush();
                     break;
                 }
-                case "creerUtilisateursDeTest": {
-                    gestionnaireUtilisateurs.creerUtilisateursDeTest();
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                    request.setAttribute("listeDesUsers", liste);
-                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
-                    message = "Liste des utilisateurs";
-                    break;
-                }
+//                case "creerUtilisateursDeTest": {
+//                    gestionnaireUtilisateurs.creerUtilisateursDeTest();
+//                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+//                    request.setAttribute("listeDesUsers", liste);
+//                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
+//                    message = "Liste des utilisateurs";
+//                    break;
+//                }
                 case "creerUnUtilisateur": {
                     Collection<Utilisateur> liste = new ArrayList<>();
                     Utilisateur u = gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));

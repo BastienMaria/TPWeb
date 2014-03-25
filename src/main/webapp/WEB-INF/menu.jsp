@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -7,11 +8,6 @@
         $("#tabs").tabs();
     });
 </script>
-
-<ul>
-    <li><a href="ServletUsers?action=listerLesUtilisateurs&page=1">Afficher/raffraichir la liste de tous les utilisateurs</a></li>
-    <li><a href="ServletUsers?action=creerUtilisateursDeTest">Créer 4 utilisateurs de test</a></li>
-</ul>
 
 <div id="tabs">
     <ul>
@@ -39,24 +35,31 @@
         </form>  
     </div>
     <div id="tabs-2">
-        <form role="form" action="ServletUsers" method="get">
-            <div class="form-group">
-
-                login : <input type="text" name="login"/><br>
-                <input type="hidden" name="action" value="chercherParLogin"/>
-                <input type="submit" value="Chercher" name="submit"/>
-            </div>
-        </form>   
+        <div class="form-group">
+            <form role="form" action="ServletUsers" method="get">
+                <div class="form-group">
+                    <label for="log">Login :</label>
+                    <input class="form-control" type="text" name="login"/><br>
+                    <input type="hidden" name="action" value="chercherParLogin"/>
+                    <input class="btn btn-default" type="submit" value="Chercher" name="submit"/>
+                </div>
+            </form>   
+        </div>
     </div>
     <div id="tabs-3">
         <form role="form" action="ServletUsers" method="get">
             <div class="form-group">
+                <label for="log">Login :</label>
+                <input class="form-control" type="text" name="login"/><br>
 
-                Login : <input type="text" name="login"/><br>
-                Nom : <input type="text" name="nom"/><br>
-                Prénom : <input type="text" name="prenom"/><br>
+                <label for="nom">Nom :</label>
+                <input class="form-control" type="text" name="nom"/><br>
+
+                <label for="pre">Prénom :</label>
+                <input class="form-control" type="text" name="prenom"/><br>
+
                 <input type="hidden" name="action" value="updateUtilisateur"/>
-                <input type="submit" value="Mettre à jour" name="submit"/>
+                <input class="btn btn-default" type="submit" value="Mettre à jour" name="submit"/>
             </div>
         </form>
     </div>
@@ -83,4 +86,7 @@
         </form>
     </div>
 </div> 
+<br>
+<a class="btn btn-default btn-lg btn-block" href="ServletUsers?action=listerLesUtilisateurs&page=1"><span class="glyphicon glyphicon-refresh"></span>
+    Afficher/raffraichir la liste de tous les utilisateurs</a>
 
