@@ -22,7 +22,7 @@
                     <td>${u.login}</td>
                     <td>${u.firstname}</td>
                     <td>${u.lastname}</td>
-                    <td><input type="checkbox" name="id" value="${u.id}" onchange="document.getElementById('sub').disabled = !this.checked;"></td>
+                    <td><input type="checkbox" name="id" value="${u.id}"></td>
                     <!-- On compte le nombre de users -->
                     <c:set var="total" value="${total+1}"/>
                 </tr>
@@ -36,7 +36,7 @@
                 </td>
                 <td>
                     <input type="hidden" name="action" value="supprimerUtilisateurs"/>
-                    <button type="submit" class="btn btn-danger" name="sub" >Supprimer</button>
+                    <button type="submit" class="btn btn-danger" name="sub">Supprimer</button>
                 </td>
             </tr>
         </table>

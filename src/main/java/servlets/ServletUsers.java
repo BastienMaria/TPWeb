@@ -113,6 +113,28 @@ public class ServletUsers extends HttpServlet {
                     //  message = updatedCount + " utilisateur(s) modifié(s)";
                     break;
                 }
+                case "supprimerUtilisateurs": {
+
+                    String[] ids = request.getParameterValues("id");
+
+                    if (ids != null) {
+                        for (String id : ids) {
+                            System.out.println("id : " + id);
+                        }
+                        for (String id : ids) {
+                            gestionnaireUtilisateurs.deleteUsers(Integer.parseInt(id));
+                        }
+
+                        message = "suppression réalisée";
+                    } else {
+                        message = "aucun utilisateur selectionné!";
+                    }
+
+                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                    request.setAttribute("listeDesUsers", liste);
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
+                    break;
+                }
                 case "generateData": {
 
                     String[] comboxBox = request.getParameterValues("nbUsers");
