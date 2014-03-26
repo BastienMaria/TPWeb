@@ -56,17 +56,20 @@ public class GestionnaireUtilisateurs {
         } catch (Exception e) {
             return false;
         }
+
         return true;
     }
 
     public boolean deleteUsers(int id) {
 
         Utilisateur u = em.find(Utilisateur.class, id);
+
         try {
             em.remove(u);
         } catch (Exception e) {
             return false;
         }
+
         return true;
     }
 
@@ -88,14 +91,15 @@ public class GestionnaireUtilisateurs {
     // Add business logic below. (Right-click in editor and choose  
     // "Insert Code > Add Business Method")  
 
-    public Collection<Utilisateur> generateData() throws FileNotFoundException, IOException {
-        Reader reader = new FileReader("C:\\Users\\Bastien\\Documents\\NetBeansProjects\\TPWeb\\web\\data.csv");
+    public List<Utilisateur> generateData() throws FileNotFoundException, IOException {
+        Reader reader = new FileReader("C:\\Users\\Bastien\\Documents\\NetBeansProjects\\TPWeb(Maven)\\src\\main\\webapp\\data.csv");
 
         CSVReader<Utilisateur> csvPersonReader = new CSVReaderBuilder<Utilisateur>(reader).entryParser(new UtilisateurEntryParser()).build();
 
         List<Utilisateur> persons = csvPersonReader.readAll();
 
         return persons;
+
     }
 
 }

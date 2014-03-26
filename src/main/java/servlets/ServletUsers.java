@@ -124,7 +124,6 @@ public class ServletUsers extends HttpServlet {
                     for (Utilisateur utilisateur : liste) {
                         gestionnaireUtilisateurs.creeUtilisateur(utilisateur.getLastname(), utilisateur.getFirstname(), utilisateur.getLogin());
                     }
-
                     request.setAttribute("listeDesUsers", liste);
                     forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
                     break;

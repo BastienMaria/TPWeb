@@ -63,7 +63,7 @@
                             <td><b>Login</b></td>
                             <td><b>Nom</b></td>
                             <td><b>Prénom</b></td>
-                            <td><b>Supprimer</b></td>
+                            <td width="10%"><b>Supprimer</b></td>
                         </tr>
 
                         <!-- Ici on affiche les lignes, une par utilisateur -->
@@ -82,8 +82,21 @@
                         </c:forEach>
 
                         <!-- Affichage du solde total dans la dernière ligne du tableau -->
-                        <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td><a href="ServletUsers?action=listerLesUtilisateurs&page=<%= Integer.parseInt(request.getParameter("page")) + 1%><% System.out.println(request.getParameter("page"));%>">&gt;&gt;</a></td></tr>
+                        <tr>
+                            <td><b>TOTAL</b></td>
+                            <td><b>${total}</b></td>
+                            <td>
+                            </td>
+                            <td><button type="submit" class="btn btn-danger">Supprimer</button></td>
+                        </tr>
                     </table>
+
+<!--<a href="ServletUsers?action=listerLesUtilisateurs&page=<%= Integer.parseInt(request.getParameter("page")) + 1%><% System.out.println(request.getParameter("page"));%>">&gt;&gt;</a>-->
+                    <ul class="pagination">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+
                 </c:if>
             </c:if>
         </div>
