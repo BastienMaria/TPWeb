@@ -70,8 +70,8 @@ public class Connexion extends HttpServlet {
             //2 semaines (14 jours)
             session.setMaxInactiveInterval(1209600);
         }
-        
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        response.sendRedirect("index.jsp");
     }
 
     /**

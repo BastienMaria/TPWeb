@@ -12,6 +12,16 @@
 </script>
 
 <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/tabUtil.js"></script>
+    <script>
+    $(function() {
+        init();
+    });
+    </script>
+
     <h2>Liste des utilisateurs</h2>
     <form action="ServletUsers" method="get">
         <table class="table table-bordered">
@@ -32,7 +42,7 @@
                     <td>${u.login}</td>
                     <td>${u.firstname}</td>
                     <td>${u.lastname}</td>
-                    <td><input type="checkbox" name="id" value="${u.id}"></td>
+                    <td><input type="checkbox" name="id" value="${u.id}" onchange="document.getElementById('sub').disabled = !this.checked;"></td>
                     <!-- On compte le nombre de users -->
                     <c:set var="total" value="${total+1}"/>
                 </tr>
@@ -48,15 +58,14 @@
                     <input type="hidden" name="action" value="supprimerUtilisateurs"/>
                     <button type="submit" class="btn btn-danger" name="sub">Supprimer</button><br>
                     <input type="checkbox" onClick="toggle(this)" /> select all<br/>
+
                 </td>
             </tr>
         </table>
     </form>
-
-<!--<a href="ServletUsers?action=listerLesUtilisateurs&page=<%= Integer.parseInt(request.getParameter("page")) + 1%><% System.out.println(request.getParameter("page"));%>">&gt;&gt;</a>-->
     <ul class="pagination">
-        <li><a href="#">&laquo;</a></li>
-        <li><a href="#">&raquo;</a></li>
+        <li><a href="javascript:previousPage()" id="previous">&laquo;</a></li>
+        <li><a href="javascript:nextPage()"id="next">&raquo;</a></li>
     </ul>
 
 </c:if>

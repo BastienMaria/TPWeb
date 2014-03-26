@@ -164,7 +164,6 @@ public class ServletUsers extends HttpServlet {
 
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
         dp.forward(request, response);
-        // Après un forward, plus rien ne peut être exécuté après !  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

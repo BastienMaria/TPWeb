@@ -1,0 +1,4 @@
+.pagination-unactive{
+    pointer-events: none;
+    cursor: default;
+}
