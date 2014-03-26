@@ -1,6 +1,16 @@
 <!-- Ne pas oublier cette ligne sinon tous les tags de la JSTL seront ignorés ! -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->
+
+<script>
+    function toggle(source) {
+        checkboxes = document.getElementsByName('id');
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+</script>
+
 <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >
     <h2>Liste des utilisateurs</h2>
     <form action="ServletUsers" method="get">
@@ -36,7 +46,8 @@
                 </td>
                 <td>
                     <input type="hidden" name="action" value="supprimerUtilisateurs"/>
-                    <button type="submit" class="btn btn-danger" name="sub">Supprimer</button>
+                    <button type="submit" class="btn btn-danger" name="sub">Supprimer</button><br>
+                    <input type="checkbox" onClick="toggle(this)" /> select all<br/>
                 </td>
             </tr>
         </table>

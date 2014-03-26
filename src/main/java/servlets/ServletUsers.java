@@ -80,14 +80,6 @@ public class ServletUsers extends HttpServlet {
                     out.flush();
                     break;
                 }
-//                case "creerUtilisateursDeTest": {
-//                    gestionnaireUtilisateurs.creerUtilisateursDeTest();
-//                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-//                    request.setAttribute("listeDesUsers", liste);
-//                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
-//                    message = "Liste des utilisateurs";
-//                    break;
-//                }
                 case "creerUnUtilisateur": {
                     Collection<Utilisateur> liste = new ArrayList<>();
                     Utilisateur u = gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));
@@ -110,7 +102,7 @@ public class ServletUsers extends HttpServlet {
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                     request.setAttribute("listeDesUsers", liste);
                     forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
-                    //  message = updatedCount + " utilisateur(s) modifié(s)";
+                    message = " utilisateur mis à jour";
                     break;
                 }
                 case "supprimerUtilisateurs": {
@@ -138,14 +130,26 @@ public class ServletUsers extends HttpServlet {
                 case "generateData": {
 
                     String[] comboxBox = request.getParameterValues("nbUsers");
-                    int nb = 100;//default
-                    nb = Integer.parseInt(comboxBox[0]);
 
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.generateData();
+                    Collection<Utilisateur> liste = null;
 
-                    for (Utilisateur utilisateur : liste) {
-                        gestionnaireUtilisateurs.creeUtilisateur(utilisateur.getLastname(), utilisateur.getFirstname(), utilisateur.getLogin());
+                    if (comboxBox != null) {
+                        int x = 0;
+                        int nb = Integer.parseInt(comboxBox[0]);
+                        liste = gestionnaireUtilisateurs.generateData();
+
+                        for (Utilisateur utilisateur : liste) {
+                            while (x < nb) {
+                                gestionnaireUtilisateurs.creeUtilisateur(utilisateur.getLastname(), utilisateur.getFirstname(), utilisateur.getLogin());
+                                x++;
+                            }
+                            break;
+                        }
+
+                        message = "données générées";
                     }
+
+                    liste = gestionnaireUtilisateurs.getAllUsers();
                     request.setAttribute("listeDesUsers", liste);
                     forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
                     break;
