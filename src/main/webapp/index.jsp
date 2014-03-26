@@ -26,11 +26,11 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/TPWeb(Maven)/">Gestionnaire d'utilisateurs</a>
+                        <a class="navbar-brand" href="#">Gestionnaire d'utilisateurs</a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="/TPWeb(Maven)/">Home</a></li>
+                            <li class="active"><a href="#">Home</a></li>
                         </ul>
 
                     </div><!--/.nav-collapse -->
@@ -63,6 +63,7 @@
                             <td><b>Login</b></td>
                             <td><b>Nom</b></td>
                             <td><b>Prénom</b></td>
+                            <td><b>Supprimer</b></td>
                         </tr>
 
                         <!-- Ici on affiche les lignes, une par utilisateur -->
@@ -74,6 +75,7 @@
                                 <td>${u.login}</td>
                                 <td>${u.firstname}</td>
                                 <td>${u.lastname}</td>
+                                <td><input type="checkbox"></td>
                                 <!-- On compte le nombre de users -->
                                 <c:set var="total" value="${total+1}"/>
                             </tr>

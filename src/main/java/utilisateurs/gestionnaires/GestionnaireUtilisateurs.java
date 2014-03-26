@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -57,20 +56,17 @@ public class GestionnaireUtilisateurs {
         } catch (Exception e) {
             return false;
         }
-
         return true;
     }
 
     public boolean deleteUsers(int id) {
 
         Utilisateur u = em.find(Utilisateur.class, id);
-
         try {
             em.remove(u);
         } catch (Exception e) {
             return false;
         }
-
         return true;
     }
 
@@ -96,13 +92,8 @@ public class GestionnaireUtilisateurs {
         Reader reader = new FileReader("C:\\Users\\Bastien\\Documents\\NetBeansProjects\\TPWeb\\web\\data.csv");
 
         CSVReader<Utilisateur> csvPersonReader = new CSVReaderBuilder<Utilisateur>(reader).entryParser(new UtilisateurEntryParser()).build();
+
         List<Utilisateur> persons = csvPersonReader.readAll();
-
-        for (Iterator<Utilisateur> it = persons.iterator(); it.hasNext();) {
-            Utilisateur u = it.next();
-            System.out.println(u.getFirstname() + "  " + u.getLastname() + "  " + u.getLogin());
-
-        }
 
         return persons;
     }

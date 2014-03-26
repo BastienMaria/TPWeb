@@ -115,11 +115,11 @@ public class ServletUsers extends HttpServlet {
                 }
                 case "generateData": {
 
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.generateData();
-
                     String[] comboxBox = request.getParameterValues("nbUsers");
                     int nb = 100;//default
                     nb = Integer.parseInt(comboxBox[0]);
+
+                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.generateData();
 
                     for (Utilisateur utilisateur : liste) {
                         gestionnaireUtilisateurs.creeUtilisateur(utilisateur.getLastname(), utilisateur.getFirstname(), utilisateur.getLogin());

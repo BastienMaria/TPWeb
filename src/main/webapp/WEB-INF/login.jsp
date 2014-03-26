@@ -29,11 +29,15 @@
         </fieldset>
 
         <% } else {%>
-        <div class="page-header">
-            <h1>Bonjour <%= session.getAttribute("login")%> !</h1>
-            <small><a href="Deconnexion" class="btn btn-info btn-xs">Déconnexion</a></small>
-        </div>
-        <h3> </h3>
 
+        <div class="row">
+            <div class="page-header">
+
+                <h1>Bonjour <%= session.getAttribute("login")%> !</h1>
+
+                <small><a href="Deconnexion" class="btn btn-info btn-xs">Déconnexion</a></small>
+            </div>
+
+        </div>
         <%}%>
     </div>
