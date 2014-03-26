@@ -47,12 +47,12 @@ public class Deconnexion extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if(session != null){
+        if (session != null) {
             session.removeAttribute("login");
             session.invalidate();
         }
-        
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        response.sendRedirect("index.jsp");
     }
 
     /**
