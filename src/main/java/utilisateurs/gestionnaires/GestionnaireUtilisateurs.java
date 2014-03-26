@@ -92,7 +92,7 @@ public class GestionnaireUtilisateurs {
     // "Insert Code > Add Business Method")  
 
     public List<Utilisateur> generateData() throws FileNotFoundException, IOException {
-        Reader reader = new FileReader("/media/Data/Bibliothèques/Documents/MIAGE M1/WEB/TPWeb/src/main/webapp/data.csvs");
+        Reader reader = new FileReader("/media/Data/Bibliothèques/Documents/MIAGE M1/WEB/TPWeb/src/main/webapp/data.csv");
 
         CSVReader<Utilisateur> csvPersonReader = new CSVReaderBuilder<Utilisateur>(reader).entryParser(new UtilisateurEntryParser()).build();
 

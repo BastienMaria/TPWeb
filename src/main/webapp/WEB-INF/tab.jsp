@@ -2,11 +2,16 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->
 <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >
-    
+
     <link rel="stylesheet" href="css/style.css">
-    
-    <script src="js/tabUtil.js">init();</script>
-    
+
+    <script src="js/tabUtil.js"></script>
+    <script>
+        $(function() {
+            init();
+        });
+    </script>
+
     <h2>Liste des utilisateurs</h2>
     <form action="ServletUsers" method="get">
         <table class="table table-bordered">
