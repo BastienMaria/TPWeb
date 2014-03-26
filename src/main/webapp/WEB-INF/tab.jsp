@@ -58,7 +58,6 @@
                     <input type="hidden" name="action" value="supprimerUtilisateurs"/>
                     <button type="submit" class="btn btn-danger" name="sub">Supprimer</button><br>
                     <input type="checkbox" onClick="toggle(this)" /> select all<br/>
-
                 </td>
             </tr>
         </table>
