@@ -39,12 +39,12 @@ public class GestionnaireUtilisateurs {
         return u;
     }
 
-    public Collection<Utilisateur> chercherParLogin(String login, int startPosition) {
+    public Collection<Utilisateur> chercherParLogin(String login, int page) {
 
         Query q = em.createQuery("select u from Utilisateur u where lower(u.login) = :login");
         q.setParameter("login", login.toLowerCase());
         q.setMaxResults(10);
-        q.setFirstResult(startPosition - 1);
+        q.setFirstResult(page * 10 - 1);
 
         return q.getResultList();
     }
@@ -76,23 +76,22 @@ public class GestionnaireUtilisateurs {
     public Collection<Utilisateur> getAllUsers() {
         // Exécution d'une requête équivalente à un select *  
         Query q = em.createQuery("select u from Utilisateur u");
-        //q.setFirstResult(startPosition - 1);
         return q.getResultList();
     }
 
     //TODO
-    public Collection<Utilisateur> getAllUsersPaginated() {
+    public Collection<Utilisateur> getAllUsersPaginated(int page) {
         // Exécution d'une requête équivalente à un select *  
         Query q = em.createQuery("select u from Utilisateur u");
         q.setMaxResults(10);
-        //q.setFirstResult(startPosition - 1);
+        q.setFirstResult(page * 10 - 1);
         return q.getResultList();
     }
     // Add business logic below. (Right-click in editor and choose  
     // "Insert Code > Add Business Method")  
 
     public List<Utilisateur> generateData() throws FileNotFoundException, IOException {
-        Reader reader = new FileReader("/media/Data/Bibliothèques/Documents/MIAGE M1/WEB/TPWeb/src/main/webapp/data.csv");
+        Reader reader = new FileReader("F:\\Bibliothèques\\Documents\\MIAGE M1\\WEB\\TPWeb\\src\\main\\webapp\\data.csv");
 
         CSVReader<Utilisateur> csvPersonReader = new CSVReaderBuilder<Utilisateur>(reader).entryParser(new UtilisateurEntryParser()).build();
 

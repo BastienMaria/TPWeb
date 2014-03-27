@@ -44,13 +44,17 @@ public class ServletUsers extends HttpServlet {
         String action = request.getParameter("action");
         String forwardTo = "";
         String message = "";
-
+        String page = request.getParameter("page");
+        
+        if(page == null)
+            page = "1";
+        
         if (action != null) {
             switch (action) {
                 case "listerLesUtilisateurs": {
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsersPaginated(Integer.parseInt(page));
                     request.setAttribute("listeDesUsers", liste);
-                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=" + page;
                     message = "Liste des utilisateurs";
                     break;
                 }
@@ -85,23 +89,23 @@ public class ServletUsers extends HttpServlet {
                     Utilisateur u = gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));
                     liste.add(u);
                     request.setAttribute("listeDesUsers", liste);
-                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=" + page;
                     message = "Utilisateur créé";
                     break;
                 }
                 case "chercherParLogin": {
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.chercherParLogin(request.getParameter("login"), 1);
+                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.chercherParLogin(request.getParameter("login"), Integer.parseInt(page));
                     request.setAttribute("listeDesUsers", liste);
-                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=" + page;
                     int countUsersFound = liste.size();
                     message = countUsersFound + " utilisateur(s) trouvé(s)";
                     break;
                 }
                 case "updateUtilisateur": {
                     // int updatedCount = gestionnaireUtilisateurs.updateUsers(request.getParameter("login"), request.getParameter("prenom"), request.getParameter("nom"));
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsersPaginated(Integer.parseInt(page));
                     request.setAttribute("listeDesUsers", liste);
-                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=" + page;
                     message = " utilisateur mis à jour";
                     break;
                 }
@@ -124,7 +128,7 @@ public class ServletUsers extends HttpServlet {
 
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                     request.setAttribute("listeDesUsers", liste);
-                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=" + page;
                     break;
                 }
                 case "generateData": {
@@ -149,9 +153,9 @@ public class ServletUsers extends HttpServlet {
                         message = "données générées";
                     }
 
-                    liste = gestionnaireUtilisateurs.getAllUsers();
+                    liste = gestionnaireUtilisateurs.getAllUsersPaginated(Integer.parseInt(page));
                     request.setAttribute("listeDesUsers", liste);
-                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=1";
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs&page=" + page;
                     break;
                 }
 
