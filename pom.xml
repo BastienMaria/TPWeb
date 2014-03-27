@@ -26,11 +26,6 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.dandelion</groupId>
-            <artifactId>datatables-jsp</artifactId>
-            <version>0.9.3</version>
-        </dependency>
     </dependencies>
 
     <build>
