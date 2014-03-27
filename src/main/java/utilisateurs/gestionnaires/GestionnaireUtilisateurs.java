@@ -44,21 +44,34 @@ public class GestionnaireUtilisateurs {
         Query q = em.createQuery("select u from Utilisateur u where lower(u.login) = :login");
         q.setParameter("login", login.toLowerCase());
         q.setMaxResults(10);
-        q.setFirstResult(page * 10 - 1);
+        int firstResult = page * 10 - 1;
+        if (page <= 0) {
+            firstResult = 0;
+        }
+        q.setFirstResult(firstResult);
 
         return q.getResultList();
     }
 
-    public boolean updateUsers(Utilisateur user) {
+    public boolean updateUsers(String login, String firstname, String lastname) {
 
-        try {
-            em.merge(user);
-        } catch (Exception e) {
-            return false;
-        }
-
+        Query q = em.createQuery("update Utilisateur u set u.firstname = :firstname, u.lastname = :lastname where u.login = :login");
+        q.setParameter("login", login);
+        q.setParameter("firstname", firstname);
+        q.setParameter("lastname", lastname);
+        q.executeUpdate();
         return true;
     }
+
+//    public boolean updateUsers(Utilisateur user) {
+//        try {
+//            em.merge(user);
+//        } catch (Exception e) {
+//            return false;
+//        }
+//
+//        return true;
+//    }
 
     public boolean deleteUsers(int id) {
 
@@ -84,7 +97,11 @@ public class GestionnaireUtilisateurs {
         // Exécution d'une requête équivalente à un select *  
         Query q = em.createQuery("select u from Utilisateur u");
         q.setMaxResults(10);
-        q.setFirstResult(page * 10 - 1);
+        int firstResult = page * 10 - 1;
+        if (page <= 0) {
+            firstResult = 0;
+        }
+        q.setFirstResult(firstResult);
         return q.getResultList();
     }
     // Add business logic below. (Right-click in editor and choose  

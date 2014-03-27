@@ -45,10 +45,11 @@ public class ServletUsers extends HttpServlet {
         String forwardTo = "";
         String message = "";
         String page = request.getParameter("page");
-        
-        if(page == null)
-            page = "1";
-        
+
+        if (page == null) {
+            page = "0";
+        }
+
         if (action != null) {
             switch (action) {
                 case "listerLesUtilisateurs": {
@@ -102,11 +103,12 @@ public class ServletUsers extends HttpServlet {
                     break;
                 }
                 case "updateUtilisateur": {
-                    // int updatedCount = gestionnaireUtilisateurs.updateUsers(request.getParameter("login"), request.getParameter("prenom"), request.getParameter("nom"));
+                    //gestionnaireUtilisateurs.updateUsers(new Utilisateur(request.getParameter("login"), request.getParameter("prenom"), request.getParameter("nom")));
+                    gestionnaireUtilisateurs.updateUsers(request.getParameter("login"), request.getParameter("prenom"), request.getParameter("nom"));
                     Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsersPaginated(Integer.parseInt(page));
                     request.setAttribute("listeDesUsers", liste);
                     forwardTo = "index.jsp?action=listerLesUtilisateurs&page=" + page;
-                    message = " utilisateur mis à jour";
+                    message = "Utilisateur mis à jour";
                     break;
                 }
                 case "supprimerUtilisateurs": {
@@ -140,17 +142,20 @@ public class ServletUsers extends HttpServlet {
                     if (comboxBox != null) {
                         int x = 0;
                         int nb = Integer.parseInt(comboxBox[0]);
+
                         liste = gestionnaireUtilisateurs.generateData();
 
                         for (Utilisateur utilisateur : liste) {
+                            if (x < nb) {
                                 gestionnaireUtilisateurs.creeUtilisateur(utilisateur.getLastname(), utilisateur.getFirstname(), utilisateur.getLogin());
+                                x++;
+                            }
                         }
 
                         message = "données générées";
                     }
-
-                    liste = gestionnaireUtilisateurs.getAllUsersPaginated(Integer.parseInt(page));
-                    request.setAttribute("listeDesUsers", liste);
+                    Collection<Utilisateur> listeFinale = gestionnaireUtilisateurs.getAllUsersPaginated(Integer.parseInt(page));
+                    request.setAttribute("listeDesUsers", listeFinale);
                     forwardTo = "index.jsp?action=listerLesUtilisateurs&page=" + page;
                     break;
                 }
