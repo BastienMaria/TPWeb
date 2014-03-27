@@ -126,7 +126,7 @@ public class ServletUsers extends HttpServlet {
                         message = "aucun utilisateur selectionné!";
                     }
 
-                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                    Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsersPaginated(Integer.parseInt(page));
                     request.setAttribute("listeDesUsers", liste);
                     forwardTo = "index.jsp?action=listerLesUtilisateurs&page=" + page;
                     break;
@@ -143,11 +143,7 @@ public class ServletUsers extends HttpServlet {
                         liste = gestionnaireUtilisateurs.generateData();
 
                         for (Utilisateur utilisateur : liste) {
-                            while (x < nb) {
                                 gestionnaireUtilisateurs.creeUtilisateur(utilisateur.getLastname(), utilisateur.getFirstname(), utilisateur.getLogin());
-                                x++;
-                            }
-                            break;
                         }
 
                         message = "données générées";
