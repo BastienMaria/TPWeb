@@ -88,6 +88,6 @@
     </div>
 </div> 
 <br>
-<a class="btn btn-default btn-lg btn-block" href="ServletUsers?action=listerLesUtilisateurs&page=1"><span class="glyphicon glyphicon-refresh"></span>
+<a class="btn btn-default btn-lg btn-block" href="ServletUsers?action=listerLesUtilisateurs&page=0"><span class="glyphicon glyphicon-refresh"></span>
     Afficher/raffraichir la liste de tous les utilisateurs</a>
 
